@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Question / discussion
+    url: https://github.com/harsh-pandhe/fleetcommand-platform/discussions
+    about: Ask before you build, not after — keeps context out of PR threads.

@@ -1,0 +1,58 @@
+name: Build task
+description: A scoped piece of work from the roadmap (backend, mobile, or infra)
+title: "[Phase N] <short description>"
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for a concrete, PR-sized piece of work. If it's ambiguous or open-ended, open a discussion issue instead.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - backend
+        - mobile
+        - infra
+        - docs
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - "P0 — required for pilot"
+        - "P1 — deferrable"
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Why this task exists — link to the relevant section of the build plan / roadmap.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: What's in this task. Be specific enough that someone unfamiliar with the discussion can pick it up.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Checklist of what "done" means.
+      placeholder: |
+        - [ ] ...
+        - [ ] ...
+    validations:
+      required: true
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Out of scope
+      description: What NOT to do here (prevents scope creep into other issues).
