@@ -1,0 +1,13 @@
+# Local defaults match the PostgreSQL service supplied by the development Compose setup.
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/fleetcommand}
+    username: ${DB_USERNAME:fleetcommand}
+    password: ${DB_PASSWORD:fleetcommand}
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false

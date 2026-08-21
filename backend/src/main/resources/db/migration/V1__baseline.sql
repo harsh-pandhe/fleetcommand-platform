@@ -1,0 +1,1 @@
+-- Baseline migration. Domain tables are introduced by their owning feature migrations.

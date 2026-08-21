@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: fleetcommand-backend
+  profiles:
+    default: dev
