@@ -38,3 +38,7 @@ Custom IoT hardware, fuel sensors, edge AI/work-vs-idle classification, multi-ve
 
 ## How to track progress
 Use the [Milestones](https://github.com/harsh-pandhe/fleetcommand-platform/milestones) view for phase-level burn-down and the `phase:N-*` / `area:*` / `priority:*` labels to filter issues. See [`CONTRIBUTING.md`](../CONTRIBUTING.md) for how to pick up work.
+
+## Pilot readiness
+
+- [Go / pivot review template](go-pivot-review.md) — week 15–16 success gates (§23) and kill/pivot triggers (§24).
