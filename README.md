@@ -58,6 +58,25 @@ Explicitly excluded from V2: custom IoT hardware, fuel sensors, edge AI, multi-v
 
 ## Getting started
 
+### Local Infrastructure
+
+Requires Docker / Docker Compose to be installed and available.
+
+1. **Start services**:
+   ```bash
+   docker compose up -d
+   ```
+2. **Verify status**:
+   ```bash
+   docker compose ps
+   ```
+   Both `fleetcommand-postgres` and `fleetcommand-redis` should eventually report a healthy status.
+3. **Stop services**:
+   ```bash
+   docker compose down
+   ```
+   *Note: Avoid using `-v` during normal shutdowns to preserve local data in the named volumes.*
+
 ### Backend
 ```bash
 cd backend
