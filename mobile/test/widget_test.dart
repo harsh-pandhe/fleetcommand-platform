@@ -1,30 +1,40 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:fleetcommand_mobile/main.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fleetcommand_mobile/app/app.dart';
+import 'package:fleetcommand_mobile/features/hirer/hirer_screen.dart';
+import 'package:fleetcommand_mobile/features/owner/owner_screen.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('App shell can be constructed and contains ProviderScope', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const ProviderScope(
+        child: App(),
+      ),
+    );
+    await tester.pumpAndSettle();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify initial screen is Hirer Screen
+    expect(find.byType(HirerScreen), findsOneWidget);
+    expect(find.text('HIRER ROOT'), findsOneWidget);
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  testWidgets('Navigation between placeholder role screens works', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const ProviderScope(
+        child: App(),
+      ),
+    );
+    await tester.pumpAndSettle();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Find and tap navigation button to Owner
+    final goOwnerButton = find.widgetWithText(ElevatedButton, 'Go to Owner');
+    expect(goOwnerButton, findsOneWidget);
+    await tester.tap(goOwnerButton);
+    await tester.pumpAndSettle();
+
+    // Verify Owner Screen is resolved
+    expect(find.byType(OwnerScreen), findsOneWidget);
+    expect(find.text('OWNER ROOT'), findsOneWidget);
   });
 }
