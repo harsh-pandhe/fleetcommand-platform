@@ -1,0 +1,6 @@
+CREATE TABLE users (
+    id UUID PRIMARY KEY,
+    phone VARCHAR(20) NOT NULL UNIQUE,
+    role VARCHAR(20) NOT NULL,
+    status VARCHAR(20) NOT NULL
+);
