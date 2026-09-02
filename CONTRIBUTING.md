@@ -42,6 +42,23 @@ These were decided in the [build plan](docs/FleetCommand_V2_Critical_Build_Plan.
 - Realtime is **polling first**; WebSockets are P1.
 - No IoT/telemetry work until Phase 8 evidence says the marketplace has repeat transactions — Phase 2 (IoT) issues do not exist yet on purpose.
 
+## Backend endpoint authorization
+
+All backend endpoints are authenticated by default. Leave public routes explicit in
+`SecurityConfiguration` (currently only `/auth/**`), then guard every role-specific
+handler with Spring Security method security:
+
+```java
+@PreAuthorize("hasRole('OWNER')")
+@GetMapping("/owners/me")
+public OwnerProfileResponse getMyProfile() { /* ... */ }
+```
+
+JWTs expose a single `role` claim and it is mapped to Spring authorities as
+`ROLE_<role>`. Do not inspect JWT claims manually in controllers to authorize a
+request; use `@PreAuthorize` and the authenticated JWT only to identify the current
+user.
+
 ## Local setup
 
 ### Backend
